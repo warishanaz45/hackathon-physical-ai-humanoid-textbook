@@ -1,0 +1,260 @@
+/**
+ * Homepage Features Styles
+ * Feature: 006-premium-ui-redesign
+ * Premium feature cards with hover effects and animations
+ */
+
+.features {
+  display: flex;
+  align-items: stretch;
+  padding: 5rem 0;
+  width: 100%;
+  background-color: var(--ifm-background-surface-color);
+  position: relative;
+}
+
+/* Subtle gradient overlay for visual interest */
+.features::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(14, 165, 233, 0.02) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+[data-theme='dark'] .features::before {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(14, 165, 233, 0.03) 50%,
+    transparent 100%
+  );
+}
+
+.featureSvg {
+  height: 180px;
+  width: 180px;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* Feature card container - applied via col class styling */
+:global(.col) {
+  padding: 1rem;
+}
+
+/* Premium Feature card styling */
+.featureCard {
+  background-color: var(--ifm-background-color);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  height: 100%;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  transition:
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
+  text-align: center;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gradient accent on card top */
+.featureCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0ea5e9 0%, #8b5cf6 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Premium hover effect - lift and glow */
+.featureCard:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1),
+    0 0 40px rgba(14, 165, 233, 0.1);
+}
+
+.featureCard:hover::before {
+  opacity: 1;
+}
+
+.featureCard:hover .featureSvg {
+  transform: scale(1.1);
+}
+
+/* Dark mode card styling */
+[data-theme='dark'] .featureCard {
+  background-color: rgba(17, 24, 39, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -2px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='dark'] .featureCard:hover {
+  border-color: rgba(14, 165, 233, 0.3);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.4),
+    0 8px 10px -6px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(14, 165, 233, 0.15),
+    0 0 30px rgba(139, 92, 246, 0.1);
+}
+
+/* Feature title - premium typography */
+.featureTitle {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--ifm-font-color-base);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+/* Feature description - readable and elegant */
+.featureDescription {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ifm-font-color-secondary);
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* Entrance animations */
+.featureCard {
+  animation: feature-card-entrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+:global(.col):nth-child(1) .featureCard {
+  animation-delay: 0.1s;
+}
+
+:global(.col):nth-child(2) .featureCard {
+  animation-delay: 0.2s;
+}
+
+:global(.col):nth-child(3) .featureCard {
+  animation-delay: 0.3s;
+}
+
+@keyframes feature-card-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments - Tablet */
+@media screen and (max-width: 996px) {
+  .features {
+    padding: 4rem 0;
+  }
+
+  .featureSvg {
+    height: 150px;
+    width: 150px;
+  }
+
+  .featureCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .featureTitle {
+    font-size: 1.35rem;
+  }
+}
+
+/* Responsive adjustments - Mobile */
+@media screen and (max-width: 768px) {
+  .features {
+    padding: 3rem 0;
+  }
+
+  .featureSvg {
+    height: 120px;
+    width: 120px;
+  }
+
+  .featureCard {
+    padding: 1.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+  }
+
+  .featureTitle {
+    font-size: 1.25rem;
+  }
+
+  .featureDescription {
+    font-size: 0.95rem;
+  }
+}
+
+/* Responsive adjustments - Small Mobile */
+@media screen and (max-width: 576px) {
+  .features {
+    padding: 2.5rem 0;
+  }
+
+  .featureSvg {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .featureCard {
+    padding: 1.5rem 1rem;
+  }
+
+  .featureTitle {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .featureDescription {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .featureCard {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .featureCard:hover {
+    transform: none;
+  }
+
+  .featureSvg {
+    transition: none;
+  }
+
+  .featureCard:hover .featureSvg {
+    transform: none;
+  }
+}

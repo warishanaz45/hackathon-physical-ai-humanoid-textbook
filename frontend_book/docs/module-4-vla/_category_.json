@@ -1,0 +1,8 @@
+{
+  "label": "Module 4: Vision-Language-Action",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Convergence of LLMs and robotics for voice-controlled humanoid actions. Learn to implement voice-to-action pipelines, use LLMs for cognitive planning, and build a capstone project with an autonomous humanoid executing tasks via voice commands."
+  }
+}

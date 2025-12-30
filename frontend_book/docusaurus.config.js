@@ -1,0 +1,139 @@
+// @ts-check
+// `@type` JSDoc annotations allow editor autocompletion and type checking
+// (when paired with `@ts-check`).
+// There are various equivalent ways to declare your Docusaurus config.
+// See: https://docusaurus.io/docs/api/docusaurus-config
+
+import {themes as prismThemes} from 'prism-react-renderer';
+
+// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
+/** @type {import('@docusaurus/types').Config} */
+const config = {
+  title: 'AI/Spec-Driven Book with RAG Chatbot',
+  tagline: 'Learn humanoid robotics with AI-powered assistance',
+  favicon: 'img/favicon.ico',
+
+  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+  future: {
+    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+  },
+
+  // Set the production url of your site here
+  url: 'https://your-username.github.io',
+  // Set the /<baseUrl>/ pathname under which your site is served
+  // For GitHub pages deployment, it is often '/<projectName>/'
+  baseUrl: '/Hackathon-book-creation-2025/',
+
+  // GitHub pages deployment config.
+  organizationName: 'your-username', // Your GitHub username
+  projectName: 'Hackathon-book-creation-2025', // Your repo name
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
+
+  onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
+
+  // Even if you don't use internationalization, you can use this field to set
+  // useful metadata like html lang. For example, if your site is Chinese, you
+  // may want to replace "en" with "zh-Hans".
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
+
+  presets: [
+    [
+      'classic',
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
+        docs: {
+          sidebarPath: './sidebars.js',
+          // Remove edit links for now
+        },
+        blog: false, // Disable blog for documentation focus
+        theme: {
+          customCss: './src/css/custom.css',
+        },
+      }),
+    ],
+  ],
+
+  themeConfig:
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    ({
+      // Replace with your project's social card
+      image: 'img/docusaurus-social-card.jpg',
+      colorMode: {
+        respectPrefersColorScheme: true,
+      },
+      navbar: {
+        title: 'Humanoid Robotics Book',
+        logo: {
+          alt: 'Humanoid Robotics Book Logo',
+          src: 'img/logo.svg',
+        },
+        items: [
+          {
+            type: 'docSidebar',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'Modules',
+          },
+          {
+            href: 'https://github.com/your-username/Hackathon-book-creation-2025',
+            label: 'GitHub',
+            position: 'right',
+          },
+        ],
+      },
+      footer: {
+        style: 'dark',
+        links: [
+          {
+            title: 'Learn',
+            items: [
+              {
+                label: 'Module 1: ROS 2',
+                to: '/docs/module-1-ros2/introduction',
+              },
+              {
+                label: 'Module 2: Digital Twin',
+                to: '/docs/module-2-simulation/gazebo-physics',
+              },
+            ],
+          },
+          {
+            title: 'Resources',
+            items: [
+              {
+                label: 'ROS 2 Documentation',
+                href: 'https://docs.ros.org/en/humble/',
+              },
+              {
+                label: 'URDF Tutorial',
+                href: 'https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/URDF-Main.html',
+              },
+            ],
+          },
+          {
+            title: 'More',
+            items: [
+              {
+                label: 'GitHub',
+                href: 'https://github.com/your-username/Hackathon-book-creation-2025',
+              },
+            ],
+          },
+        ],
+        copyright: `Copyright © ${new Date().getFullYear()} AI/Spec-Driven Book. Built with Docusaurus.`,
+      },
+      prism: {
+        theme: prismThemes.github,
+        darkTheme: prismThemes.dracula,
+        additionalLanguages: ['python', 'bash', 'markup', 'csharp', 'yaml'],
+      },
+    }),
+};
+
+export default config;

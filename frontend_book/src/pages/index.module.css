@@ -1,0 +1,251 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ *
+ * Feature: 006-premium-ui-redesign
+ * Premium hero section with animated gradient and entrance animations
+ */
+
+.heroBanner {
+  padding: 6rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Premium animated gradient background */
+  background: linear-gradient(
+    135deg,
+    #0ea5e9 0%,
+    #0284c7 25%,
+    #8b5cf6 50%,
+    #7c3aed 75%,
+    #0ea5e9 100%
+  );
+  background-size: 400% 400%;
+  animation: premium-hero-gradient 15s ease infinite;
+}
+
+/* Dark mode hero - slightly different gradient for depth */
+[data-theme='dark'] .heroBanner {
+  background: linear-gradient(
+    135deg,
+    #0c4a6e 0%,
+    #1e3a5f 25%,
+    #4c1d95 50%,
+    #312e81 75%,
+    #0c4a6e 100%
+  );
+  background-size: 400% 400%;
+  animation: premium-hero-gradient 15s ease infinite;
+}
+
+/* Grid pattern overlay for tech aesthetic */
+.heroBanner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.15) 1px,
+    transparent 0
+  );
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure content is above the grid overlay */
+.heroBanner > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hero gradient animation keyframe */
+@keyframes premium-hero-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Hero title entrance animation */
+.heroTitle {
+  animation: premium-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  color: #ffffff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 4rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+/* Hero subtitle entrance animation (staggered) */
+.heroSubtitle {
+  animation: premium-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  opacity: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+}
+
+/* Fade-up animation keyframe */
+@keyframes premium-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Buttons container with staggered entrance */
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  animation: premium-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+/* Button styling for hero */
+.buttons a,
+.buttons button {
+  min-height: 56px;
+  padding: 0 2rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Primary button - white with gradient text on hover */
+.buttons a:first-child,
+.buttons button:first-child {
+  background: #ffffff;
+  color: #0ea5e9;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.buttons a:first-child:hover,
+.buttons button:first-child:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Secondary button - outlined */
+.buttons a:not(:first-child),
+.buttons button:not(:first-child) {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.buttons a:not(:first-child):hover,
+.buttons button:not(:first-child):hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Tablet responsive adjustments */
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 5rem 1.5rem;
+    min-height: 70vh;
+  }
+
+  .heroTitle {
+    font-size: 3rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.15rem;
+  }
+}
+
+/* Mobile responsive adjustments */
+@media screen and (max-width: 768px) {
+  .heroBanner {
+    padding: 4rem 1rem;
+    min-height: 60vh;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.05rem;
+    padding: 0 1rem;
+  }
+
+  .buttons {
+    gap: 1rem;
+  }
+}
+
+/* Small mobile responsive adjustments */
+@media screen and (max-width: 576px) {
+  .heroBanner {
+    padding: 3rem 1rem;
+    min-height: auto;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .buttons > * {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .heroBanner {
+    animation: none;
+    background-position: 0% 50%;
+  }
+
+  .heroTitle,
+  .heroSubtitle,
+  .buttons {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .buttons a:hover,
+  .buttons button:hover {
+    transform: none;
+  }
+}
